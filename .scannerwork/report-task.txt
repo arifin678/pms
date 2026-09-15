@@ -1,0 +1,6 @@
+projectKey=PMS
+serverUrl=http://localhost:9000
+serverVersion=26.9.0.129388
+dashboardUrl=http://localhost:9000/dashboard?id=PMS
+ceTaskId=1e1be8b4-e250-46c8-bb43-5aa00f9fcf87
+ceTaskUrl=http://localhost:9000/api/ce/task?id=1e1be8b4-e250-46c8-bb43-5aa00f9fcf87

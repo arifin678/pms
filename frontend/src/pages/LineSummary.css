@@ -1,0 +1,155 @@
+* { box-sizing: border-box; }
+html, body, #root { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+body { background: #f1f5f9; color: #0f172a; font-family: 'Segoe UI', Arial, sans-serif; }
+
+.line-summary-page {
+  width: 100%; height: 100vh; padding: clamp(10px, 1.1vw, 22px) clamp(14px, 2vw, 40px);
+  background: #f1f5f9; display: flex; flex-direction: column; gap: clamp(10px, 1vw, 18px);
+}
+
+/* HEADER & SLICER */
+.header-container {
+  flex: 0 0 auto; display: flex; justify-content: space-between; align-items: center;
+  gap: 12px; background-color: #ffffff; padding: 12px 20px; border-radius: 14px; box-shadow: 0 4px 10px rgba(15, 23, 42, 0.04);
+}
+.header-left-group { display: flex; align-items: center; gap: 14px; }
+.ls-back-button {
+  width: 40px; height: 40px; border: 1px solid #cbd5e1; border-radius: 10px; background: #f8fafc; color: #0f172a; font-size: 26px; font-weight: bold;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; padding-bottom: 4px; transition: all 0.2s;
+}
+.ls-back-button:hover { background: #e2e8f0; }
+.header-title { margin: 0; font-style: italic; font-weight: 900; font-size: 26px; letter-spacing: 1.2px; color: #0f172a; text-transform: uppercase; }
+.header-right-group { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
+
+/* SLICER MODERN */
+.header-slicer-group { display: flex; align-items: center; gap: 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 6px 12px; margin-right: 8px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); }
+.ls-slicer-compact { display: flex; align-items: center; gap: 10px; }
+.ls-slicer-label { font-size: 13px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+.slicer-divider { width: 1px; height: 28px; background: #cbd5e1; margin: 0 4px; }
+.ls-slicer-input { border: 1px solid #cbd5e1; border-radius: 8px; padding: 6px 14px; font-size: 15px; font-weight: 800; color: #0f172a; background: #ffffff; outline: none; cursor: pointer; min-width: 160px; height: 42px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: all 0.2s ease; }
+.ls-slicer-input:hover, .ls-slicer-input:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15); }
+select.ls-slicer-input { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; background-size: 18px; padding-right: 36px; }
+.header-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 999px; font-size: 15px; font-weight: 700; color: #334155; white-space: nowrap; height: 42px; }
+.header-badge--time { color: #10b981; }
+
+/* MAIN SPLIT LAYOUT */
+.ls-split-wrapper { flex: 1; display: flex; min-height: 0; gap: 18px; }
+.ls-shape-box { background: #ffffff; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.05); position: relative; overflow: hidden; padding: 20px 24px; display: flex; flex-direction: column; }
+.ls-shape-box::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px; }
+.ls-shape-box--blue::before { background: #3b82f6; }
+.ls-shape-box--green::before { background: #10b981; }
+.ls-shape-box--red::before { background: #ef4444; }
+
+.ls-left-col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.ls-right-col { width: 730px; flex-shrink: 0; display: flex; flex-direction: column; gap: 18px; min-height: 0; }
+.ls-half-title { font-size: 18px; font-weight: 800; color: #1e293b; margin: 0 0 8px 0; text-transform: uppercase; text-align: center; }
+
+/* LEFT COLUMN: SHIFT CHARTS */
+.ls-charts-container { flex: 1; display: flex; flex-direction: column; gap: 16px; min-height: 0; }
+.ls-shift-chart-card { flex: 1; display: flex; flex-direction: column; min-height: 0; background: #f8fbff; border: 1px solid #dce4ef; border-radius: 16px; padding: 16px 20px; box-shadow: inset 0 0 0 2px #ffffff; }
+
+.ls-shift-chart-head { position: relative; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.ls-shift-time-line { position: absolute; left: 30px; right: 30px; height: 2px; background: #bfdbfe; top: 50%; transform: translateY(-50%); z-index: 1; }
+.ls-shift-time-label { z-index: 2; background: #ffffff; border: 1px solid #dbeafe; border-radius: 20px; padding: 6px 18px; font-weight: 800; color: #0f172a; font-size: 13px; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
+
+.ls-shift-center-head { z-index: 2; background: #f8fbff; padding: 0 20px; display: flex; align-items: center; gap: 16px; }
+.ls-shift-center-head h2 { margin: 0; font-size: clamp(22px, 1.5vw, 28px); font-weight: 900; font-style: italic; color: #0f172a; letter-spacing: 0.5px; }
+
+/* LENCANA CYCLE OK & NG */
+.ls-shift-cycle-badge { display: flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 8px; font-size: 11px; font-weight: 800; background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); text-transform: uppercase; white-space: nowrap; }
+.ls-shift-cycle-badge--ok { color: #16a34a; border-color: #bbf7d0; background: #f0fdf4; }
+.ls-shift-cycle-badge--ng { color: #dc2626; border-color: #fecaca; background: #fef2f2; }
+.ls-shift-cycle-badge .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; }
+.ls-shift-cycle-badge--ok .dot { background: #22c55e; }
+.ls-shift-cycle-badge--ng .dot { background: #ef4444; }
+.ls-shift-cycle-badge strong { font-size: 15px; font-weight: 900; margin-left: 4px; }
+
+/* SHIFT PERFORMANCE BOX */
+.ls-shift-perf-box { position: absolute; right: 96px; z-index: 2; background: #ffffff; border: 1px solid #dce4ef; border-radius: 10px; display: flex; align-items: center; gap: 12px; padding: 4px 14px; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05); }
+.ls-shift-perf-label { font-size: 11px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+.ls-shift-perf-values { display: flex; align-items: center; }
+.ls-shift-perf-pct { font-size: 17px; font-weight: 900; }
+
+.ls-shift-chart-body { flex: 1; min-height: 0; width: 100%; }
+.bar-duration-label { font-size: 19px; font-weight: 500; fill: #0f172a; pointer-events: none; paint-order: stroke fill; stroke: #ffffff; stroke-width: 1.5px; stroke-linecap: round; stroke-linejoin: round; }
+.std-reference-label-text { font-size: 18px; font-weight: 800; paint-order: stroke; stroke: #f8fbff; stroke-width: 3px; }
+
+/* CUSTOM TOOLTIP UNTUK LINE SUMMARY */
+.ls-tooltip-container {
+  background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 10px 14px; min-width: 250px; font-family: 'Segoe UI', sans-serif;
+}
+.ls-tooltip-header {
+  display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 6px; margin-bottom: 8px; gap: 12px;
+}
+.ls-tooltip-header strong { font-size: 16px; color: #0f172a; font-weight: 900; }
+.ls-tooltip-status { font-size: 14.5px; font-weight: 900; text-transform: uppercase; }
+
+.ls-tooltip-table { width: 100%; border-collapse: collapse; font-size: 14px; font-weight: 600; color: #475569; }
+.ls-tooltip-table td { padding: 5px 0; border-bottom: 1px dashed #e2e8f0; }
+.ls-tooltip-table tr:last-child td { border-bottom: none; }
+.ls-tooltip-table .val { text-align: right; font-weight: 900; color: #0f172a; font-size: 15px; }
+
+/* RIGHT COLUMN: KPIs & HISTORY TABLE */
+.ls-shape-box.ls-kpi-card-shape { flex: 0 0 auto; padding: 24px 32px; } 
+.ls-kpi-split { display: flex; align-items: center; gap: 32px; justify-content: space-between; } 
+.ls-kpi-donut-area { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 16px; }
+.ls-donut-large { --val: 0%; width: 150px; height: 150px; border-radius: 50%; background: conic-gradient(#22c55e 0%, #22c55e var(--val), #ef4444 var(--val), #ef4444 100%); display: flex; align-items: center; justify-content: center; }
+.ls-donut-large span { width: 106px; height: 106px; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center; color: #0f172a; font-size: 34px; font-weight: 900; }
+.ls-cycle-ok-badge { padding: 8px 24px; border: 1px solid #e2e8f0; border-radius: 12px; background: #f8fafc; color: #475569; font-size: 15px; font-weight: 600; text-align: center; }
+.ls-cycle-ok-badge .dot { display: inline-block; width: 10px; height: 10px; background: #22c55e; border-radius: 50%; margin-right: 6px; }
+.ls-cycle-ok-badge strong { display: block; color: #0f172a; font-size: 22px; font-weight: 900; margin-top: 4px;} 
+
+.ls-kpi-pills-area { flex: 0 0 350px; display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+.ls-pill-card { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border: 1px solid #e2e8f0; border-radius: 12px; background: #f8fafc; }
+.ls-pill-left { display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 800; color: #64748b; text-transform: uppercase; }
+.ls-pill-icon { font-size: 16px; }
+.ls-pill-card strong { font-size: 22px; font-weight: 900; color: #0f172a; } 
+.ls-pill-card--red { border-color: #fecaca; background: #fef2f2; }
+.ls-pill-card--red .ls-pill-icon { color: #dc2626; }
+.ls-pill-card--green { border-color: #bbf7d0; background: #f0fdf4; }
+.ls-pill-card--green .ls-pill-icon { color: #16a34a; }
+.ls-pill-card--blue { border-color: #bfdbfe; background: #eff6ff; }
+.ls-pill-card--blue .ls-pill-icon { color: #2563eb; }
+
+/* =======================================================
+   TABLE SCROLL LOCK (Fungsi Scroll & Mencegah Teks Terpotong)
+======================================================= */
+.ls-shape-box.ls-history-card-shape { flex: 1; min-height: 0; padding: 24px 28px; display: flex; flex-direction: column; }
+.ls-history-table-wrap { flex: 1; min-height: 0; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 12px; }
+
+/* Desain Scrollbar Tabel */
+.ls-history-table-wrap::-webkit-scrollbar { width: 8px; height: 8px; }
+.ls-history-table-wrap::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 12px; }
+.ls-history-table-wrap::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 12px; }
+.ls-history-table-wrap::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+.ls-history-table { width: 100%; border-collapse: collapse; text-align: center; }
+
+/* PERBAIKAN: Mencegah teks NO dan QTY menjadi 1.. / 2... */
+.ls-history-table th, .ls-history-table td { 
+  border: 1px solid #e2e8f0; 
+  white-space: nowrap; 
+}
+
+/* PERBAIKAN: Memastikan Header tetap menempel di atas (Sticky) */
+.ls-history-table th { 
+  position: sticky; 
+  top: 0; 
+  background: #f8fafc; 
+  padding: 14px 10px; 
+  font-size: 13px; 
+  font-weight: 800; 
+  color: #475569; 
+  z-index: 10; 
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05); 
+}
+
+.ls-history-table td { padding: 14px 10px; font-size: 13px; font-weight: 500; color: #334155; background: #ffffff; }
+.ls-history-table .text-left { text-align: left; }
+.ls-history-table .empty-text { padding: 24px; color: #94a3b8; font-style: italic; border: none; font-size: 14px; }
+
+/* RESPONSIVE */
+@media (max-width: 1500px) { .ls-right-col { width: 600px; } .ls-kpi-pills-area { flex: 0 0 300px; } }
+@media (max-width: 1200px) { .ls-split-wrapper { flex-direction: column; overflow-y: auto; } .line-summary-page { overflow-y: auto; height: auto; min-height: 100vh; } .ls-left-col { min-height: 500px; } .ls-right-col { width: 100%; max-width: 100%; min-height: 400px; } .ls-kpi-split { flex-wrap: wrap; } .ls-kpi-donut-area { flex: 0 0 100%; } .ls-kpi-pills-area { flex: 1; } }

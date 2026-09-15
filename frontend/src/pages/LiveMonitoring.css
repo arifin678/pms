@@ -1,0 +1,248 @@
+* {
+  box-sizing: border-box;
+}
+
+.line-monitor-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 16px 22px 34px;
+  background: #f4f7fb;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* HEADER */
+.lm-header {
+  width: 100%;
+  min-height: 72px;
+  margin-bottom: 30px;
+  padding: 0 32px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.lm-title {
+  margin: 0;
+  color: #0f172a;
+  font-size: clamp(24px, 1.7vw, 34px);
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 6px;
+  white-space: nowrap;
+}
+
+.lm-header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.lm-info-pill {
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.lm-info-pill svg {
+  color: #0f172a;
+  stroke-width: 2;
+}
+
+.lm-date-pill svg {
+  color: #3b82f6;
+}
+
+.lm-time-pill span {
+  color: #009c66;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+}
+
+.lm-shift-pill {
+  border-color: #f5d56b;
+  background: #fff8d6;
+  color: #7c2d12;
+}
+
+/* PRODUCT GRID */
+.line-monitor-grid {
+  width: 100%;
+  max-width: calc((195px * 6) + (26px * 5));
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px 26px;
+}
+
+.line-product-card {
+  width: 195px;
+  height: 255px;
+  flex: 0 0 195px;
+  border: 1px solid #cfcfcf;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 30px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.line-product-card:hover {
+  transform: translateY(-4px);
+  border-color: #2f5597;
+  box-shadow:
+    0 9px 18px rgba(15, 23, 42, 0.28),
+    0 0 0 3px rgba(47, 85, 151, 0.1);
+}
+
+.line-product-card:active {
+  transform: translateY(-1px);
+}
+
+.line-product-icon-wrap {
+  width: 142px;
+  height: 142px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.line-product-icon {
+  width: 128px;
+  height: 128px;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+.line-product-name {
+  min-width: 122px;
+  max-width: 160px;
+  min-height: 36px;
+  padding: 4px 14px;
+  border-radius: 8px;
+  background: #2f5597;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.7px;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: 0 4px 9px rgba(15, 23, 42, 0.35);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1350px) {
+  .line-monitor-grid {
+    max-width: calc((195px * 5) + (26px * 4));
+  }
+}
+
+@media (max-width: 1120px) {
+  .lm-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px 22px;
+  }
+
+  .lm-header-right {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .line-monitor-grid {
+    max-width: calc((195px * 4) + (26px * 3));
+  }
+}
+
+@media (max-width: 900px) {
+  .line-monitor-page {
+    padding: 12px 14px 28px;
+  }
+
+  .lm-title {
+    font-size: 22px;
+    letter-spacing: 3px;
+    white-space: normal;
+  }
+
+  .line-monitor-grid {
+    max-width: calc((180px * 3) + (22px * 2));
+    gap: 24px 22px;
+  }
+
+  .line-product-card {
+    width: 180px;
+    height: 235px;
+    flex-basis: 180px;
+  }
+
+  .line-product-icon {
+    width: 118px;
+    height: 118px;
+  }
+
+  .line-product-name {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 620px) {
+  .lm-info-pill {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .line-monitor-grid {
+    max-width: calc((165px * 2) + 18px);
+    gap: 22px 18px;
+  }
+
+  .line-product-card {
+    width: 165px;
+    height: 220px;
+    flex-basis: 165px;
+  }
+
+  .line-product-icon {
+    width: 108px;
+    height: 108px;
+  }
+
+  .line-product-name {
+    min-width: 112px;
+    font-size: 17px;
+  }
+}

@@ -1,0 +1,158 @@
+* { box-sizing: border-box; }
+html, body, #root { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+body { background: #f1f5f9; color: #0f172a; font-family: 'Segoe UI', Arial, sans-serif; }
+
+.line-accu-page {
+  width: 100%; height: 100vh; padding: clamp(10px, 1.1vw, 22px) clamp(14px, 2vw, 40px);
+  background: #f1f5f9; display: flex; flex-direction: column; gap: clamp(10px, 1vw, 18px);
+}
+
+/* HEADER & SLICER (Datum: LineSummary) */
+.header-container { flex: 0 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; background-color: #ffffff; padding: 12px 20px; border-radius: 14px; box-shadow: 0 4px 10px rgba(15, 23, 42, 0.04); }
+.header-left-group { display: flex; align-items: center; gap: 14px; }
+.la-back-button { width: 40px; height: 40px; border: 1px solid #cbd5e1; border-radius: 10px; background: #f8fafc; color: #0f172a; font-size: 26px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; padding-bottom: 4px; transition: all 0.2s; }
+.la-back-button:hover { background: #e2e8f0; }
+.header-title { margin: 0; font-style: italic; font-weight: 900; font-size: 26px; letter-spacing: 1.2px; color: #0f172a; text-transform: uppercase; }
+.header-right-group { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
+
+.header-slicer-group { display: flex; align-items: center; gap: 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 6px 12px; margin-right: 8px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); }
+.la-slicer-compact { display: flex; align-items: center; gap: 10px; }
+.la-slicer-label { font-size: 13px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+.slicer-divider { width: 1px; height: 28px; background: #cbd5e1; margin: 0 4px; }
+.la-slicer-input { border: 1px solid #cbd5e1; border-radius: 8px; padding: 6px 14px; font-size: 15px; font-weight: 800; color: #0f172a; background: #ffffff; outline: none; cursor: pointer; min-width: 160px; height: 42px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: all 0.2s ease; }
+.la-slicer-input:hover, .la-slicer-input:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15); }
+select.la-slicer-input { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; background-size: 18px; padding-right: 36px; }
+.header-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 999px; font-size: 15px; font-weight: 700; color: #334155; white-space: nowrap; height: 42px; }
+.header-badge--time { color: #10b981; }
+
+/* MAIN SPLIT LAYOUT */
+.la-split-wrapper { flex: 1; display: flex; min-height: 0; gap: 18px; }
+.la-shape-box { background: #ffffff; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.05); position: relative; overflow: hidden; padding: 20px 24px; display: flex; flex-direction: column; }
+.la-shape-box::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px; }
+.la-shape-box--blue::before { background: #3b82f6; }
+.la-shape-box--green::before { background: #10b981; }
+.la-shape-box--red::before { background: #ef4444; }
+
+.la-left-col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.la-right-col { width: 730px; flex-shrink: 0; display: flex; flex-direction: column; gap: 18px; min-height: 0; }
+.la-half-title { font-size: 18px; font-weight: 800; color: #1e293b; margin: 0 0 8px 0; text-transform: uppercase; text-align: center; }
+
+/* SHIFT CHARTS */
+.la-charts-container { flex: 1; display: flex; flex-direction: column; gap: 16px; min-height: 0; }
+.la-shift-chart-card { flex: 1; display: flex; flex-direction: column; min-height: 0; background: #f8fbff; border: 1px solid #dce4ef; border-radius: 16px; padding: 16px 20px; box-shadow: inset 0 0 0 2px #ffffff; }
+.la-shift-chart-head { position: relative; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.la-shift-time-line { position: absolute; left: 30px; right: 30px; height: 2px; background: #bfdbfe; top: 50%; transform: translateY(-50%); z-index: 1; }
+.la-shift-time-label { z-index: 2; background: #ffffff; border: 1px solid #dbeafe; border-radius: 20px; padding: 6px 18px; font-weight: 800; color: #0f172a; font-size: 13px; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
+.la-shift-center-group { z-index: 2; background: #f8fbff; padding: 0 20px; display: flex; align-items: center; gap: 16px; }
+.la-shift-title-center { margin: 0; font-size: clamp(22px, 1.5vw, 28px); font-weight: 900; font-style: italic; color: #0f172a; letter-spacing: 0.5px; }
+
+/* LEGEND */
+.la-legend-group { display: flex; gap: 12px; }
+.la-legend-item { display: flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 8px; font-size: 11px; font-weight: 800; background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); text-transform: uppercase; }
+.la-legend-item.match { color: #16a34a; border-color: #bbf7d0; background: #f0fdf4; }
+.la-legend-item.open { color: #dc2626; border-color: #fecaca; background: #fef2f2; }
+.la-legend-item.surplus { color: #ca8a04; border-color: #fef08a; background: #fefce8; }
+.la-legend-item .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; }
+.la-legend-item.match .dot { background: #22c55e; }
+.la-legend-item.open .dot { background: #ef4444; }
+.la-legend-item.surplus .dot { background: #eab308; }
+.la-legend-item strong { font-size: 15px; font-weight: 900; margin-left: 4px; color: #0f172a; }
+
+.la-shift-chart-body { flex: 1; min-height: 0; width: 100%; }
+.accu-bar-label { font-size: 14px; font-weight: 700; fill: #ffffff; pointer-events: none; }
+.std-reference-label-text { font-size: 14px; font-weight: 800; paint-order: stroke; stroke: #f8fbff; stroke-width: 3px; }
+
+/* ==========================================================
+   CUSTOM TOOLTIP (CLEAN & PROFESSIONAL)
+========================================================== */
+.accu-tooltip-container { 
+  background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px; 
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 10px 14px; min-width: 200px; 
+  font-family: 'Segoe UI', Arial, sans-serif; 
+}
+
+.accu-tooltip-header { 
+  display: flex; justify-content: space-between; align-items: center; 
+  border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; margin-bottom: 8px; gap: 12px; 
+}
+.accu-tooltip-header strong { font-size: 13px; color: #0f172a; font-weight: 800; }
+.accu-tooltip-header span { font-size: 12px; color: #64748b; font-weight: 700; }
+
+.accu-tooltip-body { padding: 8px; border-radius: 6px; }
+.accu-tooltip-body.match { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+.accu-tooltip-body.shortage { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+.accu-tooltip-body.over { background: #fefce8; color: #ca8a04; border: 1px solid #fef08a; }
+
+/* FIX: Kembalikan ukuran standar, hilangkan gaya alay/miring */
+.status-title { 
+  font-size: 16px; 
+  font-weight: 800; 
+  font-style: normal; 
+  letter-spacing: normal;
+  margin-bottom: 6px; 
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tooltip-table { width: 100%; border-collapse: collapse; font-size: 14px; font-weight: 600; color: #475569; }
+.tooltip-table td { padding: 4px 0; border-bottom: 1px dashed rgba(0,0,0,0.1); }
+.tooltip-table tr:last-child td { border-bottom: none; }
+.tooltip-table .qty { text-align: right; font-weight: 800; color: #0f172a; }
+
+/* RIGHT COLUMN: KPIs & TABLES */
+.la-shape-box.la-kpi-card-shape { flex: 0 0 auto; padding: 20px 24px; } 
+.la-kpi-split { display: flex; align-items: stretch; gap: 24px; justify-content: space-between; } 
+.la-kpi-donut-area { flex: 0 0 160px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; }
+.la-donut-large { --val: 0%; width: 120px; height: 120px; border-radius: 50%; background: conic-gradient(#22c55e 0%, #22c55e var(--val), #ef4444 var(--val), #ef4444 100%); display: flex; align-items: center; justify-content: center; }
+.la-donut-large span { width: 84px; height: 84px; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center; color: #0f172a; font-size: 34px; font-weight: 900; } /* Datum: LineSummary 34px */
+.la-cycle-ok-badge { padding: 6px 16px; border: 1px solid #e2e8f0; border-radius: 10px; background: #f8fafc; color: #475569; font-size: 13px; font-weight: 600; text-align: center; }
+.la-cycle-ok-badge .dot { display: inline-block; width: 8px; height: 8px; background: #22c55e; border-radius: 50%; margin-right: 6px; }
+.la-cycle-ok-badge strong { display: block; color: #0f172a; font-size: 22px; font-weight: 900; margin-top: 2px; } /* Datum: LineSummary 22px */
+
+/* ==============================================================================
+   SCROLLABLE TABLES SETUP (PENTING)
+============================================================================== */
+
+/* SCROLL LOCK FOR TOP TABLE (ABNORMAL PARTS) */
+.la-open-part-area { flex: 1; min-width: 0; display: flex; flex-direction: column; min-height: 0; max-height: 220px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; }
+.la-open-part-header { padding: 10px 16px; font-size: 13px; font-weight: 800; color: #0f172a; text-transform: uppercase; border-bottom: 1px solid #e2e8f0; background: #ffffff; text-align: center; }
+.la-open-part-table-wrap { flex: 1; overflow-y: auto; background: #ffffff; }
+
+.la-open-part-table { width: 100%; border-collapse: collapse; text-align: center; }
+.la-open-part-table th, .la-open-part-table td { white-space: nowrap; border-bottom: 1px solid #f1f5f9; }
+.la-open-part-table th { position: sticky; top: 0; background: #f8fafc; padding: 10px; font-size: 11px; font-weight: 800; color: #475569; z-index: 2; border-bottom: 1px solid #e2e8f0; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
+.la-open-part-table td { padding: 10px; font-size: 13px; color: #334155; font-weight: 600; }
+
+/* SCROLL LOCK FOR BOTTOM TABLE (HISTORY) */
+.la-shape-box.la-history-card-shape { flex: 1; min-height: 0; padding: 24px 28px; display: flex; flex-direction: column; }
+.la-history-table-wrap { flex: 1; min-height: 0; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 12px; }
+
+.la-history-table { width: 100%; border-collapse: collapse; text-align: center; }
+.la-history-table th, .la-history-table td { border: 1px solid #e2e8f0; white-space: nowrap; }
+.la-history-table th { position: sticky; top: 0; background: #f8fafc; padding: 14px 10px; font-size: 13px; font-weight: 800; color: #475569; z-index: 2; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+.la-history-table td { padding: 14px 10px; font-size: 13px; font-weight: 500; color: #334155; background: #ffffff; }
+
+.text-left { text-align: left !important; }
+.empty-text { padding: 24px !important; color: #94a3b8 !important; font-style: italic; font-size: 14px; text-align: center; border: none; }
+
+/* DESAIN SCROLLBAR KEDUA TABEL */
+.la-open-part-table-wrap::-webkit-scrollbar,
+.la-history-table-wrap::-webkit-scrollbar { width: 8px; height: 8px; }
+.la-open-part-table-wrap::-webkit-scrollbar-track,
+.la-history-table-wrap::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
+.la-open-part-table-wrap::-webkit-scrollbar-thumb,
+.la-history-table-wrap::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+.la-open-part-table-wrap::-webkit-scrollbar-thumb:hover,
+.la-history-table-wrap::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* RESPONSIVE */
+@media (max-width: 1500px) { .la-right-col { width: 600px; } }
+@media (max-width: 1200px) { 
+  .la-split-wrapper { flex-direction: column; overflow-y: auto; } 
+  .line-accu-page { overflow-y: auto; height: auto; min-height: 100vh; } 
+  .la-left-col { min-height: 500px; } 
+  .la-right-col { width: 100%; max-width: 100%; min-height: 400px; } 
+  .la-kpi-split { flex-wrap: wrap; } 
+  .la-open-part-area { max-height: none; min-height: 200px; }
+}

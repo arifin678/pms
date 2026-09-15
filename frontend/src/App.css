@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+.app-main-content {
+  margin-left: 64px;
+  min-height: 100vh;
+  transition: margin-left 0.25s ease;
+  background: #f3f7fb;
+}
+* {
+  color: #2d2d2d;
+}
