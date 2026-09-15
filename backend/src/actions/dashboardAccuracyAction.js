@@ -10,3 +10,7 @@ const fetchAccuracyProducts = async (req, res) => {
     res.status(500).json({ success: false, message: 'Gagal mengambil data akurasi' });
   }
 };
+
+module.exports = {
+    fetchAccuracyProducts
+};
